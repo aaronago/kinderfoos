@@ -1,13 +1,12 @@
 import { GetStaticProps } from 'next'
 
 import Page from '@components/page'
-import SponsorsGrid from '@components/sponsors-grid'
+import ShoesGrid from '@components/shoes/shoes-grid'
 import Header from '@components/header'
 import Layout from '@components/layout'
 
 import { getAllSponsors } from '@lib/cms-api'
 import { Sponsor } from '@lib/types'
-import { META_DESCRIPTION } from '@lib/constants'
 
 type Props = {
   sponsors: Sponsor[]
@@ -15,15 +14,15 @@ type Props = {
 
 export default function ExpoPage({ sponsors }: Props) {
   const meta = {
-    title: 'Expo - Virtual Event Starter Kit',
-    description: META_DESCRIPTION
+    title: 'Kinder Foos - Vegan Hiking Boots',
+    description: 'All the best shoes with NO animal products.',
   }
 
   return (
     <Page meta={meta}>
       <Layout>
-        <Header hero="Expo" description={meta.description} />
-        <SponsorsGrid sponsors={sponsors} />
+        <Header hero="Vegan Hiking Boots" description={meta.description} />
+        <ShoesGrid shoes={sponsors} />
       </Layout>
     </Page>
   )
@@ -34,8 +33,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   return {
     props: {
-      sponsors
+      sponsors,
     },
-    revalidate: 60
+    revalidate: 60,
   }
 }
