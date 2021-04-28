@@ -232,3 +232,153 @@ export const onDeleteComment = /* GraphQL */ `
     }
   }
 `;
+export const onCreateBrand = /* GraphQL */ `
+  subscription OnCreateBrand {
+    onCreateBrand {
+      id
+      name
+      shoes {
+        items {
+          id
+          name
+          price
+          gender
+          description
+          cardImage
+          brandID
+          categories
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBrand = /* GraphQL */ `
+  subscription OnUpdateBrand {
+    onUpdateBrand {
+      id
+      name
+      shoes {
+        items {
+          id
+          name
+          price
+          gender
+          description
+          cardImage
+          brandID
+          categories
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBrand = /* GraphQL */ `
+  subscription OnDeleteBrand {
+    onDeleteBrand {
+      id
+      name
+      shoes {
+        items {
+          id
+          name
+          price
+          gender
+          description
+          cardImage
+          brandID
+          categories
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateShoe = /* GraphQL */ `
+  subscription OnCreateShoe {
+    onCreateShoe {
+      id
+      name
+      price
+      gender
+      description
+      cardImage
+      brandID
+      brand {
+        id
+        name
+        shoes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      categories
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateShoe = /* GraphQL */ `
+  subscription OnUpdateShoe {
+    onUpdateShoe {
+      id
+      name
+      price
+      gender
+      description
+      cardImage
+      brandID
+      brand {
+        id
+        name
+        shoes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      categories
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteShoe = /* GraphQL */ `
+  subscription OnDeleteShoe {
+    onDeleteShoe {
+      id
+      name
+      price
+      gender
+      description
+      cardImage
+      brandID
+      brand {
+        id
+        name
+        shoes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      categories
+      createdAt
+      updatedAt
+    }
+  }
+`;

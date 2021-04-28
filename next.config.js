@@ -18,7 +18,7 @@ module.exports = {
   webpackDevMiddleware: config => {
     config.watchOptions = {
       poll: 1000,
-      aggregateTimeout: 300
+      aggregateTimeout: 300,
     }
     return config
   },
@@ -29,8 +29,9 @@ module.exports = {
       'images.ctfassets.net',
       'images.prismic.io',
       'cdn.aglty.io',
-      'localhost' // For Strapi
+      'i.imgur.com',
+      'localhost', // For Strapi
     ],
-    imageSizes: [24, 64, 300]
-  }
+    imageSizes: [24, 64, 300],
+  },
 }

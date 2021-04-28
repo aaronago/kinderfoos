@@ -150,3 +150,102 @@ export const listComments = /* GraphQL */ `
     }
   }
 `;
+export const getBrand = /* GraphQL */ `
+  query GetBrand($id: ID!) {
+    getBrand(id: $id) {
+      id
+      name
+      shoes {
+        items {
+          id
+          name
+          price
+          gender
+          description
+          cardImage
+          brandID
+          categories
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listBrands = /* GraphQL */ `
+  query ListBrands(
+    $filter: ModelBrandFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBrands(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        shoes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getShoe = /* GraphQL */ `
+  query GetShoe($id: ID!) {
+    getShoe(id: $id) {
+      id
+      name
+      price
+      gender
+      description
+      cardImage
+      brandID
+      brand {
+        id
+        name
+        shoes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      categories
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listShoes = /* GraphQL */ `
+  query ListShoes(
+    $filter: ModelShoeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listShoes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        price
+        gender
+        description
+        cardImage
+        brandID
+        brand {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        categories
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
