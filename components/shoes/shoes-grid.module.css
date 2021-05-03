@@ -73,6 +73,13 @@
   line-height: 1.4;
 }
 
+.brand {
+  color: var(--brand);
+  font-size: var(--text-lg);
+  margin: 0;
+  line-height: 1.4;
+}
+
 .description {
   margin-top: var(--space);
   margin-bottom: 0;
