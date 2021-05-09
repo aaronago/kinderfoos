@@ -1,34 +1,43 @@
-import Link from 'next/link'
 import Image from 'next/image'
 import cn from 'classnames'
 import { Shoe } from '@lib/types'
 import styles from './shoes-grid.module.css'
 
 function ShoeCard({ shoe }: { shoe: Shoe }) {
-  return (
-    <Link key={shoe.title} href={`/expo/${shoe.slug}`}>
-      <a role="button" tabIndex={0} className={cn(styles.card, styles.gold)}>
-        <div className={styles.imageWrapper}>
-          <Image
-            alt={shoe.title}
-            src={shoe.featuredImage.node.sourceUrl}
-            className={cn(styles.image)}
-            loading="lazy"
-            title={shoe.title}
-            width={900}
-            height={500}
-          />
-        </div>
+  const urls = shoe.shoeACF.retailers.map(retailer => {
+    const base = retailer.retailerACF.searchUrl
 
-        <div className={styles.cardBody}>
-          <div>
-            <h2 className={styles.name}>{shoe.title}</h2>
-            <p className={styles.brand}>{shoe.acf.brand[0].title}</p>
-            <p className={styles.description}>{shoe.acf.excerpt}</p>
-          </div>
+    return `${base}${shoe.title}`
+  })
+
+  return (
+    <a
+      href={urls[0]}
+      target="_blank"
+      rel="noreferrer noopener"
+      tabIndex={0}
+      className={cn(styles.card, styles.gold)}
+    >
+      <div className={styles.imageWrapper}>
+        <Image
+          alt={shoe.title}
+          src={shoe.featuredImage.node.sourceUrl}
+          className={cn(styles.image)}
+          loading="lazy"
+          title={shoe.title}
+          width={900}
+          height={500}
+        />
+      </div>
+
+      <div className={styles.cardBody}>
+        <div>
+          <h2 className={styles.name}>{shoe.title}</h2>
+          <p className={styles.brand}>{shoe.shoeACF.brand[0].title}</p>
+          <p className={styles.description}>{shoe.shoeACF.excerpt}</p>
         </div>
-      </a>
-    </Link>
+      </div>
+    </a>
   )
 }
 

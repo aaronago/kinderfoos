@@ -8,7 +8,6 @@ import Header from '@components/header'
 import Layout from '@components/layout'
 
 export default function ExpoPage({ shoes }) {
-  console.log(shoes)
   const meta = {
     title: 'Kinder Foos - Vegan Hiking Boots',
     description: 'All the best shoes with NO animal products.',
@@ -31,18 +30,6 @@ const query = gql`
         title
         slug
         databaseId
-        acf {
-          brand {
-            ... on Brand {
-              title
-              slug
-              databaseId
-            }
-          }
-          gender
-          price
-          excerpt
-        }
         categories {
           nodes {
             databaseId
@@ -54,6 +41,26 @@ const query = gql`
             sourceUrl(size: FASTEST_TRENDING_POSTS_LARGE)
           }
         }
+        shoeACF {
+          brand {
+            ... on Brand {
+              databaseId
+              slug
+              title
+            }
+          }
+          excerpt
+          gender
+          price
+          retailers {
+            ... on Retailer {
+              databaseId
+              retailerACF {
+                searchUrl
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -61,6 +68,5 @@ const query = gql`
 
 export async function getStaticProps() {
   const { data } = await client.query({ query })
-
   return { props: { shoes: data.shoes.nodes } }
 }

@@ -25,11 +25,22 @@ export type Brand = {
   title: string
 }
 
+export type RetailerACF = {
+  searchUrl: string
+}
+
+export type Retailer = {
+  databaseId: number
+  title?: string
+  retailerACF: RetailerACF
+}
+
 export type ShoeACF = {
   brand: [Brand]
   excerpt: string
   price: number
   gender: [string]
+  retailers: [Retailer]
 }
 
 export type Shoe = {
@@ -37,7 +48,7 @@ export type Shoe = {
   databaseId: number
   slug: string
   featuredImage: FeaturedImage
-  acf: ShoeACF
+  shoeACF: ShoeACF
 }
 
 export type Stage = {
