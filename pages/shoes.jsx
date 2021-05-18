@@ -25,7 +25,7 @@ export default function ExpoPage({ shoes }) {
 
 const query = gql`
   {
-    shoes {
+    shoes(first: 100) {
       nodes {
         title
         slug
@@ -38,7 +38,8 @@ const query = gql`
         }
         featuredImage {
           node {
-            sourceUrl(size: FASTEST_TRENDING_POSTS_LARGE)
+            altText
+            sourceUrl(size: MEDIUM_LARGE)
           }
         }
         shoeACF {
@@ -66,7 +67,7 @@ const query = gql`
   }
 `
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { data } = await client.query({ query })
   return { props: { shoes: data.shoes.nodes } }
 }

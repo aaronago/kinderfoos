@@ -13,6 +13,7 @@ module.exports = {
       'images.ctfassets.net',
       'images.prismic.io',
       'cdn.aglty.io',
+      'i0.wp.com',
       'i1.wp.com',
       'i2.wp.com',
       'localhost', // For Strapi

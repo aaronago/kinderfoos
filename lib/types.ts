@@ -17,6 +17,7 @@ export type Speaker = {
 
 export type FeaturedImage = {
   node: {
+    altText: string
     sourceUrl: string
   }
 }
