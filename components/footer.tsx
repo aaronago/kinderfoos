@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import cn from 'classnames';
-import VercelLogo from '@components/icons/icon-platform';
-import styles from './footer.module.css';
-import { COPYRIGHT_HOLDER, SITE_NAME, CODE_OF_CONDUCT, LEGAL_URL, REPO } from '@lib/constants';
+import cn from 'classnames'
+import VercelLogo from '@components/icons/icon-platform'
+import styles from './footer.module.css'
+import { COPYRIGHT_HOLDER, SITE_NAME, CODE_OF_CONDUCT, LEGAL_URL, REPO } from '@lib/constants'
 
 export function HostedByVercel() {
   return (
@@ -30,7 +30,7 @@ export function HostedByVercel() {
       <div className={styles['secondary-text']}>Created by </div>
       <VercelLogo color="white" />
     </a>
-  );
+  )
 }
 
 export default function Footer() {
@@ -64,7 +64,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Code of Conduct
+              Affiliate Disclaimer
             </a>
           </p>
           {LEGAL_URL && (
@@ -85,5 +85,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

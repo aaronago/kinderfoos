@@ -67,7 +67,7 @@ const query = gql`
   }
 `
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data } = await client.query({ query })
   return { props: { shoes: data.shoes.nodes } }
 }
