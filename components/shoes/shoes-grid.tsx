@@ -45,7 +45,7 @@ type Props = {
   shoes: Shoe[]
 }
 
-export default function SponsorsGrid({ shoes }: Props) {
+export default function ShoesGrid({ shoes }: Props) {
   return (
     <>
       <div className={styles.grid}>
