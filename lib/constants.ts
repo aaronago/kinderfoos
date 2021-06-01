@@ -1,19 +1,3 @@
-/**
- * Copyright 2020 Vercel Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 export const SITE_URL = 'https://demo.vercel.events'
 export const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_ORIGIN || new URL(SITE_URL).origin
 export const TWITTER_USER_NAME = 'vercel'
@@ -21,8 +5,7 @@ export const BRAND_NAME = 'Kinder Foos'
 export const SITE_NAME_MULTILINE = ['Kinder', 'Foos']
 export const SITE_NAME = 'Kinder Foos'
 export const META_DESCRIPTION = 'Be kind to animals and kind to your feet.'
-export const SITE_DESCRIPTION =
-  'An interactive online experience by the community, free for everyone.'
+export const SITE_DESCRIPTION = 'All the vegan hiking boots on the internet'
 export const DATE = 'October 27, 2020'
 export const SHORT_DATE = 'Oct 27 - 9:00am PST'
 export const FULL_DATE = 'Oct 27th 9am Pacific Time (GMT-7)'
@@ -42,30 +25,18 @@ export const NAVIGATION = [
     name: 'Shoes',
     route: '/shoes',
   },
-  // {
-  //   name: 'Stage A',
-  //   route: '/stage/a',
-  // },
-  // {
-  //   name: 'Stage E',
-  //   route: '/stage/e',
-  // },
-  // {
-  //   name: 'Schedule',
-  //   route: '/schedule',
-  // },
-  // {
-  //   name: 'Speakers',
-  //   route: '/speakers',
-  // },
-  // {
-  //   name: 'Expo',
-  //   route: '/expo',
-  // },
-  // {
-  //   name: 'Jobs',
-  //   route: '/jobs',
-  // },
+  {
+    name: 'Sustainability',
+    route: '/shoes',
+  },
+  {
+    name: 'About KF',
+    route: '/shoes',
+  },
+  {
+    name: 'Contact',
+    route: '/shoes',
+  },
 ]
 
 export type TicketGenerationState = 'default' | 'loading'

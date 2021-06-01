@@ -20,7 +20,7 @@ function ShoeCard({ shoe }: { shoe: Shoe }) {
     >
       <div className={styles.imageWrapper}>
         <Image
-          alt={shoe.featuredImage.node.altText || shoe.title}
+          alt={shoe.featuredImage?.node?.altText || shoe.title}
           src={shoe.featuredImage.node.sourceUrl}
           className={cn(styles.image)}
           loading="lazy"
