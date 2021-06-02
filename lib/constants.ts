@@ -27,15 +27,15 @@ export const NAVIGATION = [
   },
   {
     name: 'Sustainability',
-    route: '/shoes',
+    route: '/sustainability',
   },
   {
     name: 'About KF',
-    route: '/shoes',
+    route: '/about',
   },
   {
     name: 'Contact',
-    route: '/shoes',
+    route: '/contact',
   },
 ]
 
