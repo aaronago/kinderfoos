@@ -1,11 +1,10 @@
 import { gql } from '@apollo/client'
 import client from '@lib/graphql/apollo-client'
 import Page from '@components/page'
+import Header from '@components/header'
+import Layout from '@components/layout'
 
 import ShoesGrid from '@components/shoes/shoes-grid'
-import Header from '@components/header'
-
-import Layout from '@components/layout'
 
 export default function ExpoPage({ shoes }) {
   const meta = {
