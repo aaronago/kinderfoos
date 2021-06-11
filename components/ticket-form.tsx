@@ -1,48 +1,32 @@
-/**
- * Copyright 2020 Vercel Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+import { useState, useRef } from 'react'
+import { scrollTo } from '@lib/smooth-scroll'
+import cn from 'classnames'
+import GithubIcon from '@components/icons/icon-github'
+import CheckIcon from '@components/icons/icon-check'
+import { REPO, SITE_ORIGIN, TicketGenerationState } from '@lib/constants'
+import isMobileOrTablet from '@lib/is-mobile-or-tablet'
+import useConfData from '@lib/hooks/use-conf-data'
+import LoadingDots from './loading-dots'
+import formStyles from './form.module.css'
+import ticketFormStyles from './ticket-form.module.css'
+import { saveGithubToken } from '@lib/user-api'
+import { GitHubOAuthData } from '@lib/types'
 
-import { useState, useRef } from 'react';
-import { scrollTo } from '@lib/smooth-scroll';
-import cn from 'classnames';
-import GithubIcon from '@components/icons/icon-github';
-import CheckIcon from '@components/icons/icon-check';
-import { REPO, SITE_ORIGIN, TicketGenerationState } from '@lib/constants';
-import isMobileOrTablet from '@lib/is-mobile-or-tablet';
-import useConfData from '@lib/hooks/use-conf-data';
-import LoadingDots from './loading-dots';
-import formStyles from './form.module.css';
-import ticketFormStyles from './ticket-form.module.css';
-import { saveGithubToken } from '@lib/user-api';
-import { GitHubOAuthData } from '@lib/types';
-
-type FormState = 'default' | 'loading' | 'error';
+type FormState = 'default' | 'loading' | 'error'
 
 type Props = {
-  defaultUsername?: string;
-  setTicketGenerationState: React.Dispatch<React.SetStateAction<TicketGenerationState>>;
-};
+  defaultUsername?: string
+  setTicketGenerationState: React.Dispatch<React.SetStateAction<TicketGenerationState>>
+}
 
-const githubEnabled = Boolean(process.env.NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID);
+const githubEnabled = Boolean(process.env.NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID)
 
 export default function Form({ defaultUsername = '', setTicketGenerationState }: Props) {
-  const [username, setUsername] = useState(defaultUsername);
-  const [formState, setFormState] = useState<FormState>('default');
-  const [errorMsg, setErrorMsg] = useState('');
-  const { userData, setUserData } = useConfData();
-  const formRef = useRef<HTMLFormElement>(null);
+  const [username, setUsername] = useState(defaultUsername)
+  const [formState, setFormState] = useState<FormState>('default')
+  const [errorMsg, setErrorMsg] = useState('')
+  const { userData, setUserData } = useConfData()
+  const formRef = useRef<HTMLFormElement>(null)
 
   return formState === 'error' ? (
     <div>
@@ -53,8 +37,8 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
             type="button"
             className={cn(formStyles.submit, formStyles.error)}
             onClick={() => {
-              setFormState('default');
-              setTicketGenerationState('default');
+              setFormState('default')
+              setTicketGenerationState('default')
             }}
           >
             Try Again
@@ -66,28 +50,28 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
     <form
       ref={formRef}
       onSubmit={e => {
-        e.preventDefault();
+        e.preventDefault()
 
         if (formState !== 'default') {
-          setTicketGenerationState('default');
-          setFormState('default');
-          return;
+          setTicketGenerationState('default')
+          setFormState('default')
+          return
         }
 
-        setFormState('loading');
-        setTicketGenerationState('loading');
+        setFormState('loading')
+        setTicketGenerationState('loading')
 
         if (!process.env.NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID) {
-          setFormState('error');
-          setErrorMsg('GitHub OAuth App must be set up.');
-          return;
+          setFormState('error')
+          setErrorMsg('GitHub OAuth App must be set up.')
+          return
         }
 
-        const windowWidth = 600;
-        const windowHeight = 700;
+        const windowWidth = 600
+        const windowHeight = 700
         // https://stackoverflow.com/a/32261263/114157
-        const windowTop = window.top.outerHeight / 2 + window.top.screenY - 700 / 2;
-        const windowLeft = window.top.outerWidth / 2 + window.top.screenX - 600 / 2;
+        const windowTop = window.top.outerHeight / 2 + window.top.screenY - 700 / 2
+        const windowLeft = window.top.outerWidth / 2 + window.top.screenX - 600 / 2
 
         const openedWindow = window.open(
           `https://github.com/login/oauth/authorize?client_id=${encodeURIComponent(
@@ -95,71 +79,71 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
           )}`,
           'githubOAuth',
           `resizable,scrollbars,status,width=${windowWidth},height=${windowHeight},top=${windowTop},left=${windowLeft}`
-        );
+        )
 
         new Promise<GitHubOAuthData | undefined>(resolve => {
           const interval = setInterval(() => {
             if (!openedWindow || openedWindow.closed) {
-              clearInterval(interval);
-              resolve(undefined);
+              clearInterval(interval)
+              resolve(undefined)
             }
-          }, 250);
+          }, 250)
 
           window.addEventListener('message', function onMessage(msgEvent) {
             // When devtools is opened the message may be received multiple times
             if (SITE_ORIGIN !== msgEvent.origin || !msgEvent.data.type) {
-              return;
+              return
             }
-            clearInterval(interval);
+            clearInterval(interval)
             if (openedWindow) {
-              openedWindow.close();
+              openedWindow.close()
             }
-            resolve(msgEvent.data);
-          });
+            resolve(msgEvent.data)
+          })
         })
           .then(async data => {
             if (!data) {
-              setFormState('default');
-              setTicketGenerationState('default');
-              return;
+              setFormState('default')
+              setTicketGenerationState('default')
+              return
             }
 
-            let usernameFromResponse: string;
-            let name: string;
+            let usernameFromResponse: string
+            let name: string
             if (data.type === 'token') {
-              const res = await saveGithubToken({ id: userData.id, token: data.token });
+              const res = await saveGithubToken({ id: userData.id, token: data.token })
 
               if (!res.ok) {
-                throw new Error('Failed to store oauth result');
+                throw new Error('Failed to store oauth result')
               }
 
-              const responseJson = await res.json();
-              usernameFromResponse = responseJson.username;
-              name = responseJson.name;
+              const responseJson = await res.json()
+              usernameFromResponse = responseJson.username
+              name = responseJson.name
             } else {
-              usernameFromResponse = data.login;
-              name = data.name;
+              usernameFromResponse = data.login
+              name = data.name
             }
 
-            document.body.classList.add('ticket-generated');
-            setUserData({ ...userData, username: usernameFromResponse, name });
-            setUsername(usernameFromResponse);
-            setFormState('default');
-            setTicketGenerationState('default');
+            document.body.classList.add('ticket-generated')
+            setUserData({ ...userData, username: usernameFromResponse, name })
+            setUsername(usernameFromResponse)
+            setFormState('default')
+            setTicketGenerationState('default')
 
             // Prefetch GitHub avatar
-            new Image().src = `https://github.com/${usernameFromResponse}.png`;
+            new Image().src = `https://github.com/${usernameFromResponse}.png`
 
             // Prefetch the twitter share URL to eagerly generate the page
-            fetch(`/tickets/${usernameFromResponse}`).catch(_ => {});
+            fetch(`/tickets/${usernameFromResponse}`).catch(_ => {})
           })
           .catch(err => {
             // eslint-disable-next-line no-console
-            console.error(err);
-            setFormState('error');
-            setErrorMsg('Error! Please try again.');
-            setTicketGenerationState('default');
-          });
+            console.error(err)
+            setFormState('error')
+            setErrorMsg('Error! Please try again.')
+            setTicketGenerationState('default')
+          })
       }}
     >
       <div className={cn(formStyles['form-row'], ticketFormStyles['form-row'])}>
@@ -170,7 +154,7 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
             formStyles['generate-with-github'],
             formStyles[formState],
             {
-              [formStyles['not-allowed']]: !githubEnabled
+              [formStyles['not-allowed']]: !githubEnabled,
             }
           )}
           disabled={
@@ -180,7 +164,7 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
           }
           onClick={() => {
             if (formRef && formRef.current && isMobileOrTablet()) {
-              scrollTo(formRef.current, formRef.current.offsetHeight);
+              scrollTo(formRef.current, formRef.current.offsetHeight)
             }
           }}
         >
@@ -219,5 +203,5 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
         </p>
       </div>
     </form>
-  );
+  )
 }

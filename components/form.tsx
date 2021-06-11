@@ -131,13 +131,13 @@ export default function Form({ sharePage }: Props) {
             required
           />
         </label>
-        {/* <button
+        <button
           type="submit"
           className={cn(styles.submit, styles.register, styles[formState])}
           disabled={formState === 'loading'}
         >
           {formState === 'loading' ? <LoadingDots size={4} /> : <>Register</>}
-        </button> */}
+        </button>
       </div>
     </form>
   )
