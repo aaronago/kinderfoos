@@ -7,9 +7,8 @@ import styles from '@components/speaker-section.module.css'
 import Layout from '@components/layout'
 import { gql } from '@apollo/client'
 import client from '@lib/graphql/apollo-client'
-// type Props = {
-//   speaker: Speaker
-// }
+import GithubIcon from '@components/icons/icon-github'
+import TwitterIcon from '@components/icons/icon-twitter'
 
 export default function AboutPage({ images }) {
   const meta = {
@@ -62,9 +61,43 @@ function AbootContoot({ images }) {
         </div>
         <div className={styles['speaker-details']}>
           <div>
-            <h1 className={styles.name}>👣 Kinder Foos 🐮 🐑</h1>
+            <h1 className={styles.name}>👣 Kinder Foos 🐮 </h1>
+            <p className={styles.title}>
+              Vegan footwear & <span className={styles.company}>reviews</span>
+            </p>
+            <h2 className={styles['bio-header']}>Bio</h2>
+            <p className={styles.bio}>
+              Morbi sit amet ullamcorper dolor, laoreet egestas sem. In enim ligula, dapibus a
+              venenatis at, commodo vitae dui. Etiam nec laoreet leo. Cras a turpis massa. Integer
+              imperdiet, magna aliquet accumsan congue, enim sem elementum quam, vitae gravida orci
+              tortor in nulla. In ut mi ac enim elementum vehicula nec sed ante. Proin quis pharetra
+              massa.
+            </p>
+            <h3 className={styles['socials-header']}>Social Media</h3>
+            <a aria-label="Twitter" href="twitter.com" target="_blank" rel="noopener noreferrer">
+              <TwitterIcon color="#D8D8D8" size={24} />
+            </a>
+            <a
+              aria-label="GitHub"
+              className={styles.githubIcon}
+              href="github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GithubIcon color="#D8D8D8" size={24} />
+            </a>
           </div>
         </div>
+      </div>
+      <div className={styles['talk-details']}>
+        <h3 className={styles['socials-header']}>Affiliate Disclaimer</h3>
+        <p>
+          {' '}
+          Morbi sit amet ullamcorper dolor, laoreet egestas sem. In enim ligula, dapibus a venenatis
+          at, commodo vitae dui. Etiam nec laoreet leo. Cras a turpis massa. Integer imperdiet,
+          magna aliquet accumsan congue, enim sem elementum quam, vitae gravida orci tortor in
+          nulla. In ut mi ac enim elementum vehicula nec sed ante. Proin quis pharetra massa.
+        </p>
       </div>
     </>
   )
