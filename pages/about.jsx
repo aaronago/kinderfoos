@@ -1,5 +1,3 @@
-// Use SpeakersSection component for about page
-// remove explicit width on contact textarea for rows
 import Link from 'next/link'
 import Page from '@components/page'
 import Image from 'next/image'
@@ -80,7 +78,7 @@ function AbootContoot({ images }) {
             <a
               aria-label="GitHub"
               className={styles.githubIcon}
-              href="github.com"
+              href="https://github.com/aaronago/kinderfoos"
               target="_blank"
               rel="noopener noreferrer"
             >
