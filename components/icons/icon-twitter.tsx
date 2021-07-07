@@ -1,4 +1,4 @@
-type Props = { size: number | string; color: string }
+type Props = { size: number | string; color?: string }
 
 export default function IconTwitter({ size, color }: Props) {
   return (
