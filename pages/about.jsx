@@ -60,17 +60,15 @@ function AbootContoot({ images }) {
         <div className={styles['speaker-details']}>
           <div>
             <h1 className={styles.name}>👣 Kinder Foos 🐮 </h1>
-            <p className={styles.title}>
-              Vegan footwear & <span className={styles.company}>reviews</span>
-            </p>
+            <p className={styles.title}>Compassionate footwear for compassionate feet.</p>
             <h2 className={styles['bio-header']}>Bio</h2>
             <p className={styles.bio}>
-              Morbi sit amet ullamcorper dolor, laoreet egestas sem. In enim ligula, dapibus a
-              venenatis at, commodo vitae dui. Etiam nec laoreet leo. Cras a turpis massa. Integer
-              imperdiet, magna aliquet accumsan congue, enim sem elementum quam, vitae gravida orci
-              tortor in nulla. In ut mi ac enim elementum vehicula nec sed ante. Proin quis pharetra
-              massa.
+              Welcome to kinder foos. In 2015 the Youtube algorith decided to feed me Gary
+              Yourofsky's infamous "Best Speech Ever" video and I decided to watch it. Forty five
+              minutes later I was vegan and to this day it remains one of the best decisions I've
+              ever made.
             </p>
+            <p></p>
             <h3 className={styles['socials-header']}>Social Media</h3>
             <a aria-label="Twitter" href="twitter.com" target="_blank" rel="noopener noreferrer">
               <TwitterIcon color="#D8D8D8" size={24} />
@@ -88,13 +86,12 @@ function AbootContoot({ images }) {
         </div>
       </div>
       <div className={styles['talk-details']}>
-        <h3 className={styles['socials-header']}>Affiliate Disclaimer</h3>
+        <h3 className={styles['socials-header']}>The Shoes on Kinder Foos</h3>
         <p>
-          {' '}
-          Morbi sit amet ullamcorper dolor, laoreet egestas sem. In enim ligula, dapibus a venenatis
-          at, commodo vitae dui. Etiam nec laoreet leo. Cras a turpis massa. Integer imperdiet,
-          magna aliquet accumsan congue, enim sem elementum quam, vitae gravida orci tortor in
-          nulla. In ut mi ac enim elementum vehicula nec sed ante. Proin quis pharetra massa.
+          The bare minimum requirement that every shoe listed on this site has to meet is: no animal
+          products listed as materials. If you ever see a shoe on this site that doesn't live up to
+          this standard please, please <Link href="/contact">contact us </Link>right away and it
+          will be removed.
         </p>
       </div>
     </>
