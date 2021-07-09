@@ -37,7 +37,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.js",
     "**/*.jsx",
-    "pages/shoes.jsx"
+    "pages/shoes.jsx",
+    "lib/ga/index.js"
   ]
 }

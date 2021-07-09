@@ -17,7 +17,7 @@ export default function Hero() {
         {SITE_DESCRIPTION}
       </h2>
       <h1 className={cn(styleUtils.appear, styleUtils['appear-third'], styles.hero)}>
-        Be Kind To Animals
+        Be Kind to Animals
         <br className={styleUtils['show-on-desktop']} /> and to Your Feet
       </h1>
       <h2
