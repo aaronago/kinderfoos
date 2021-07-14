@@ -8,6 +8,7 @@ import styleUtils from './utils.module.css'
 import styles from './form.module.css'
 import useEmailQueryParam from '@lib/hooks/use-email-query-param'
 import { register } from '@lib/user-api'
+import Link from 'next/link'
 
 type FormState = 'default' | 'loading' | 'error'
 
@@ -140,5 +141,15 @@ export default function Form({ sharePage }: Props) {
         </button>
       </div>
     </form>
+  )
+}
+
+export const FormButton = () => {
+  return (
+    <div className={cn(styles.form, styleUtils['appear-fifth'], styleUtils.appear)}>
+      <Link href="/shoes">
+        <button className={cn(styles.submit, styles.default)}>Explore Shoes</button>
+      </Link>
+    </div>
   )
 }
