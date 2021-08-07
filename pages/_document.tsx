@@ -22,15 +22,15 @@ export default class CustomDocument extends Document {
           `,
             }}
           />
-          <script
-            type="text/javascript"
-            src="http://classic.avantlink.com/affiliate_app_confirm.php?mode=js&authResponse=692f90f8092a864512f4842cbdbe9b8316f0131f"
-          />
         </Head>
         <body className="loading">
           <Main />
           <NextScript />
         </body>
+        <script
+          type="text/javascript"
+          src="http://classic.avantlink.com/affiliate_app_confirm.php?mode=js&authResponse=692f90f8092a864512f4842cbdbe9b8316f0131f"
+        />
       </Html>
     )
   }
