@@ -25,6 +25,10 @@ export default function Conf() {
         defaultUserData={defaultUserData}
         defaultPageState={query.ticketNumber ? 'ticket' : 'registration'}
       />
+      <script
+        type="text/javascript"
+        src="http://classic.avantlink.com/affiliate_app_confirm.php?mode=js&authResponse=692f90f8092a864512f4842cbdbe9b8316f0131f"
+      ></script>
     </Page>
   )
 }
